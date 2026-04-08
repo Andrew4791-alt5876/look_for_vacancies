@@ -22,3 +22,5 @@ def get_info() -> list:
                     'url': vacancy.get('apply_alternate_url')
                 }
             )
+
+
