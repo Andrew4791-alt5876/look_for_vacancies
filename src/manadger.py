@@ -117,3 +117,5 @@ class DBManager:
         """Закрывает соединение с БД."""
         if self.conn:
             self.conn.close()
+
+
