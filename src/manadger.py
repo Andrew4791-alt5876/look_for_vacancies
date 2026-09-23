@@ -11,7 +11,7 @@ class DBManager:
                  title VARCHAR(255) NOT NULL, salary INTEGER, url VARCHAR(255))
     """
 
-    def __init__(self, dbname: str, user: str, password: str, host: str = 'localhost', port: str = '5432'):
+    def __init__(self, dbname: str, user: str, password: str, host: str = "localhost", port: str = "5432"):
         """
         Инициализация подключения к БД.
         :param dbname: имя базы данных
@@ -20,13 +20,7 @@ class DBManager:
         :param host: хост (по умолчанию localhost)
         :param port: порт (по умолчанию 5432)
         """
-        self.conn = psycopg2.connect(
-            dbname=dbname,
-            user=user,
-            password=password,
-            host=host,
-            port=port
-        )
+        self.conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
         self.conn.autocommit = True  # автоматическое подтверждение транзакций
 
     def _execute_query(self, query: str, params: tuple = ()) -> list:
@@ -110,12 +104,10 @@ class DBManager:
             WHERE v.title ILIKE %s;
         """
         # Добавляем символы % для поиска подстроки
-        like_pattern = f'%{keyword}%'
+        like_pattern = f"%{keyword}%"
         return self._execute_query(query, (like_pattern,))
 
     def close(self):
         """Закрывает соединение с БД."""
         if self.conn:
             self.conn.close()
-
-
